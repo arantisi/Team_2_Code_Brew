@@ -1,1 +1,0 @@
-A REST application should implement a client-server architecture. Clients don't need to know anything about the server logic, whereas Servers don't need to know anything about the client logic. Clients are those who requests resources, while servers hold the resources.

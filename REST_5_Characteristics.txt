@@ -1,0 +1,15 @@
+Uniform Interface
+Uniform interface is one of the 6 constraints of the rest api. This constraint has to do with the url. The url must follow a layered system (similar to folders) to access specific resources.
+
+Client-Server
+A REST application should implement a client-server architecture. Clients don't need to know anything about the server logic, whereas Servers don't need to know anything about the client logic. Clients are those who requests resources, while servers hold the resources.
+
+Stateless
+Statelessness is a principle of REST where the server doesn't store any data about the client or the client's request after the client makes a request. No client data is stored between requests. Every request is statelss or isolated from other requests. Each client request to the server must contain all the information necessary to service the request. 
+
+Layered System
+Layered System is a REST constraint that states that a RESTFUL system can be composed of multiple layers. You can have a layer that adds security, a layer that stores data and a layer to authenticate requests, for example. The layers may be on different servers. These layers are invisible to the client. A client cannot ordinarily tell whether it is connected directly to the end server or an intermediary along the way.
+
+Caching
+A rest API requires cacheable data in order to streamline client-server interactions. Caching allows for data to be stored on the client in order that requests to the server aren’t necessary in all instances, especially for data that is accessed often
+

@@ -1,1 +1,0 @@
-Statelessness is a principle of REST where the server doesn't store any data about the client or the client's request after the client makes a request. No client data is stored between requests. Every request is statelss or isolated from other requests. Each client request to the server must contain all the information necessary to service the request. 
