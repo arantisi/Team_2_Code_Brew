@@ -4,5 +4,20 @@ server:
     context-path:
 
 
-myapp:
-  value: "Doing Work"
+
+spring:
+  datasource:
+    username: postgres
+    password: pgdav9280
+    url: jdbc:postgresql://mypostgresdb.ctpoxfycgbg6.us-east-1.rds.amazonaws.com:5432/movies_db
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
