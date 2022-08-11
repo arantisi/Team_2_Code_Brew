@@ -1,6 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.repo.MyRepo;
+import com.example.demo.repositories.MyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

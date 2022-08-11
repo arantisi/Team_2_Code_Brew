@@ -1,29 +1,37 @@
 package com.example.demo.models;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name="Watchlists")
-
+@Table(name = "watchlists")
 public class Watchlist {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
+
     private int userId;
+
     private String movieId;
-    private boolean isPublic;
+    private boolean isPublic = true;
 
     public Watchlist() {
     }
 
-    public Watchlist(int id, String name, int userId, String movieId, boolean isPublic) {
+    public Watchlist(int id, String name, int userID, String movieId, boolean isPublic) {
         this.id = id;
         this.name = name;
-        this.userId = userId;
+        this.userId = userID;
         this.movieId = movieId;
         this.isPublic = isPublic;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userID) {
+        this.userId = userID;
     }
 
     public int getId() {
@@ -42,14 +50,6 @@ public class Watchlist {
         this.name = name;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public String getMovieId() {
         return movieId;
     }
@@ -64,16 +64,5 @@ public class Watchlist {
 
     public void setPublic(boolean aPublic) {
         isPublic = aPublic;
-    }
-
-    @Override
-    public String toString() {
-        return "Watchlists{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", userId=" + userId +
-                ", movieId='" + movieId + '\'' +
-                ", isPublic=" + isPublic +
-                '}';
     }
 }

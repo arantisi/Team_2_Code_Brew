@@ -1,12 +1,9 @@
 package com.example.demo.models;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name="Favorites")
-
+@Table(name="favorites")
 public class Favorite {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -44,14 +41,5 @@ public class Favorite {
 
     public void setMovieId(String movieId) {
         this.movieId = movieId;
-    }
-
-    @Override
-    public String toString() {
-        return "Favorites{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", movieId='" + movieId + '\'' +
-                '}';
     }
 }

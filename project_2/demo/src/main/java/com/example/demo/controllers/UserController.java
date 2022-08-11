@@ -1,4 +1,4 @@
-package com.example.demo.web;
+package com.example.demo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 
 @Controller
 @RequestMapping("")
-public class LoginController {
+public class UserController {
 
     @GetMapping("")
     public String login() {

@@ -3,10 +3,8 @@ package com.example.demo.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Reviews")
-
+@Table(name="reviews")
 public class Review {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -64,16 +62,5 @@ public class Review {
 
     public void setReview(String review) {
         this.review = review;
-    }
-
-    @Override
-    public String toString() {
-        return "Reviews{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", movieId='" + movieId + '\'' +
-                ", rating=" + rating +
-                ", review='" + review + '\'' +
-                '}';
     }
 }
