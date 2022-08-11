@@ -3,27 +3,27 @@ package com.example.demo.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Watchlists")
+@Table(name="Reviews")
 
-public class Watchlists {
+public class Reviews {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
     private int userId;
     private String movieId;
-    private boolean isPublic;
+    private int rating;
+    private String review;
 
-    public Watchlists() {
+    public Reviews() {
     }
 
-    public Watchlists(int id, String name, int userId, String movieId, boolean isPublic) {
+    public Reviews(int id, int userId, String movieId, int rating, String review) {
         this.id = id;
-        this.name = name;
         this.userId = userId;
         this.movieId = movieId;
-        this.isPublic = isPublic;
+        this.rating = rating;
+        this.review = review;
     }
 
     public int getId() {
@@ -32,14 +32,6 @@ public class Watchlists {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getUserId() {
@@ -58,22 +50,30 @@ public class Watchlists {
         this.movieId = movieId;
     }
 
-    public boolean isPublic() {
-        return isPublic;
+    public int getRating() {
+        return rating;
     }
 
-    public void setPublic(boolean aPublic) {
-        isPublic = aPublic;
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
     }
 
     @Override
     public String toString() {
-        return "Watchlists{" +
+        return "Reviews{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
                 ", userId=" + userId +
                 ", movieId='" + movieId + '\'' +
-                ", isPublic=" + isPublic +
+                ", rating=" + rating +
+                ", review='" + review + '\'' +
                 '}';
     }
 }

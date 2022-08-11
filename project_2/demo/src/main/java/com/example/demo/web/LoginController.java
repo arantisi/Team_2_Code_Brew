@@ -19,15 +19,14 @@ public class LoginController {
     }
 
     @PostMapping("")
-    public String homepage(@RequestParam(defaultValue="Guest") String u,@RequestParam(required = false) String p) {
+    public String homepage(HttpSession session,@RequestParam(defaultValue="Guest") String u,@RequestParam(required = false) String p) {
 
         System.out.println(u);
         System.out.println(p);
-       /* HttpSession session=req.getSession();
         session.setAttribute("u",u);
         session.setAttribute("p",p);
-        login(resp,u,p);*/
+        //AccountsRepo.login(u,p);
 
-        return "hi";
+        return u;
     }
 }

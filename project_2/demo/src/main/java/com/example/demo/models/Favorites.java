@@ -3,27 +3,23 @@ package com.example.demo.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Watchlists")
+@Table(name="Favorites")
 
-public class Watchlists {
+public class Favorites {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
     private int userId;
     private String movieId;
-    private boolean isPublic;
 
-    public Watchlists() {
+    public Favorites() {
     }
 
-    public Watchlists(int id, String name, int userId, String movieId, boolean isPublic) {
+    public Favorites(int id, int userId, String movieId) {
         this.id = id;
-        this.name = name;
         this.userId = userId;
         this.movieId = movieId;
-        this.isPublic = isPublic;
     }
 
     public int getId() {
@@ -32,14 +28,6 @@ public class Watchlists {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getUserId() {
@@ -58,22 +46,12 @@ public class Watchlists {
         this.movieId = movieId;
     }
 
-    public boolean isPublic() {
-        return isPublic;
-    }
-
-    public void setPublic(boolean aPublic) {
-        isPublic = aPublic;
-    }
-
     @Override
     public String toString() {
-        return "Watchlists{" +
+        return "Favorites{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
                 ", userId=" + userId +
                 ", movieId='" + movieId + '\'' +
-                ", isPublic=" + isPublic +
                 '}';
     }
 }
