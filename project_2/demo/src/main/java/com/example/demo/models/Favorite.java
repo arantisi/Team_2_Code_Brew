@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="Favorites")
 
-public class Favorites {
+public class Favorite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +13,10 @@ public class Favorites {
     private int userId;
     private String movieId;
 
-    public Favorites() {
+    public Favorite() {
     }
 
-    public Favorites(int id, int userId, String movieId) {
+    public Favorite(int id, int userId, String movieId) {
         this.id = id;
         this.userId = userId;
         this.movieId = movieId;

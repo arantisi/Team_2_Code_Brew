@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="Reviews")
 
-public class Reviews {
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +15,10 @@ public class Reviews {
     private int rating;
     private String review;
 
-    public Reviews() {
+    public Review() {
     }
 
-    public Reviews(int id, int userId, String movieId, int rating, String review) {
+    public Review(int id, int userId, String movieId, int rating, String review) {
         this.id = id;
         this.userId = userId;
         this.movieId = movieId;

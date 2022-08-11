@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="Watchlists")
 
-public class Watchlists {
+public class Watchlist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +15,10 @@ public class Watchlists {
     private String movieId;
     private boolean isPublic;
 
-    public Watchlists() {
+    public Watchlist() {
     }
 
-    public Watchlists(int id, String name, int userId, String movieId, boolean isPublic) {
+    public Watchlist(int id, String name, int userId, String movieId, boolean isPublic) {
         this.id = id;
         this.name = name;
         this.userId = userId;

@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @Table(name="Users")
 
-public class Users {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,20 +16,20 @@ public class Users {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName="id")
-    private List<Reviews> reviews;
+    private List<Review> reviews;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName="id")
-    private List<Watchlists> watchlists;
+    private List<Watchlist> watchlists;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName="id")
-    private List<Favorites> favorites;
+    private List<Favorite> favorites;
 
-    public Users() {
+    public User() {
     }
 
-    public Users(int id, String username, String pass) {
+    public User(int id, String username, String pass) {
         this.id = id;
         this.username = username;
         this.pass = pass;
