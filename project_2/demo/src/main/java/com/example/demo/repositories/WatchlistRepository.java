@@ -13,10 +13,10 @@ public interface WatchlistRepository extends JpaRepository<Watchlist, Integer> {
     List<Watchlist> findByUserId(int userId);
     List<Watchlist> findByName(String name);
     List<Watchlist> findByUserIdAndName(int userId, String name);
-    List<Watchlist> saveByUserIdAndNameAndMovieId(int userId, String name,String movieId);
+    //List<Watchlist> saveByUserIdAndNameAndMovieId(int userId, String name,String movieId);
 
 
-    //void save(WatchlistRepository);
+    //void saveByUserIdAndNameAndMovie(Watchlist watchlist);
    // Watchlist save(Watchlist watchlist);
 
 

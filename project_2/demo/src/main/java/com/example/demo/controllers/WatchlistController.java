@@ -33,7 +33,7 @@ public class WatchlistController {
         return watchlistService.getAllWatchlists();
     }
 
-    @PostMapping("/user/{userId}/public/{isPublic}/name/{name}/movie/{movieId}")
+    @PostMapping("/user/{userId}/name/{name}/movie/{movieId}/public/{isPublic}")
     public void postSaveWatchlist(@PathVariable String name,@PathVariable int userId,@PathVariable String movieId,@PathVariable Boolean isPublic) {
          watchlistService.save(new Watchlist(name,userId,movieId,isPublic));
     }
