@@ -3,7 +3,7 @@ server:
   servlet:
     context-path:
 
-
+OMDB_api_key: 12b87e4f
 
 spring:
   datasource:

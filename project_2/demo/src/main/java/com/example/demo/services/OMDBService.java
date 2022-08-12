@@ -3,6 +3,7 @@ package com.example.demo.services;
 import com.example.demo.models.Movie;
 import com.example.demo.models.MovieList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,6 +14,9 @@ import java.util.List;
 public class OMDBService {
     private RestTemplate restTemplate;
 
+    @Value("${OMDB_api_key}")
+    private String api_key;
+
     public OMDBService() {}
 
     @Autowired
@@ -21,7 +25,7 @@ public class OMDBService {
     }
 
     public List<Movie> getMoviesByTitle(String movieTitle) {
-        String url = "https://www.omdbapi.com/?apikey=12b87e4f&s=" + movieTitle;
+        String url = "https://www.omdbapi.com/?apikey="+api_key+"&s=" + movieTitle;
         MovieList resp = restTemplate.getForObject(url, MovieList.class);
 
         if (resp == null)
@@ -35,7 +39,7 @@ public class OMDBService {
     }
 
     public Movie getMovieById(String movieId) {
-        String url = "https://www.omdbapi.com/?apikey=12b87e4f&i=" + movieId;
+        String url = "https://www.omdbapi.com/?apikey="+api_key+"&i=" + movieId;
         Movie resp = restTemplate.getForObject(url, Movie.class);
 
         if (resp == null)
