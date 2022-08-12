@@ -7,20 +7,21 @@ import java.util.List;
 
 public class MovieList {
     @JsonProperty("Search")
-    private List<Movie> Search;
+    private List<Movie> movies;
+    
     public MovieList() {
-        this.Search = new ArrayList<>();
+        this.movies = new ArrayList<>();
     }
 
     public List<Movie> getList() {
-        return Search;
+        return movies;
     }
 
     public void setList(List<Movie> list) {
-        this.Search = list;
+        this.movies = list;
     }
 
     public void addMovie(Movie m) {
-        Search.add(m);
+        movies.add(m);
     }
 }
