@@ -35,5 +35,15 @@ public class WatchlistService {
          watchlistRepo.deleteByUserIdAndMovieId(userId,movieId);
     }
 
+    /*public void postSaveWatchlist(int id, String name, int userID, String movieId, boolean isPublic) {
+        Watchlist watchlist = new Watchlist("name",userID,movieId,isPublic);
+        watchlistRepo.save(watchlist);
+    }*/
+
+
+    public void save(Watchlist watchlist) {
+         watchlistRepo.save(watchlist);
+    }
+
 
 }

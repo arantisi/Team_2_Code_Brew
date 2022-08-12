@@ -33,7 +33,12 @@ public class WatchlistController {
         return watchlistService.getAllWatchlists();
     }
 
-    @DeleteMapping("/movie/{movieId}")
+    @PostMapping("/user/{userId}/public/{isPublic}/name/{name}/movie/{movieId}")
+    public void postSaveWatchlist(@PathVariable String name,@PathVariable int userId,@PathVariable String movieId,@PathVariable Boolean isPublic) {
+         watchlistService.save(new Watchlist(name,userId,movieId,isPublic));
+    }
+
+    @DeleteMapping("/user/{userId}/movie/{movieId}")
     public void deleteWatchListByUserIdAndMovieId(@PathVariable int userId,@PathVariable String movieId) {
          watchlistService.deleteWatchlistByUserIdAndMovieId(userId,movieId);
     }

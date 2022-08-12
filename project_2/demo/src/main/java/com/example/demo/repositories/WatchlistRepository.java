@@ -2,7 +2,6 @@ package com.example.demo.repositories;
 
 import com.example.demo.models.Watchlist;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,6 +13,16 @@ public interface WatchlistRepository extends JpaRepository<Watchlist, Integer> {
     List<Watchlist> findByUserId(int userId);
     List<Watchlist> findByName(String name);
     List<Watchlist> findByUserIdAndName(int userId, String name);
+    List<Watchlist> saveByUserIdAndNameAndMovieId(int userId, String name,String movieId);
+
+
+    //void save(WatchlistRepository);
+   // Watchlist save(Watchlist watchlist);
+
+
+
+
+
 
     void deleteByUserIdAndMovieId(int userId,String movieId);
 
