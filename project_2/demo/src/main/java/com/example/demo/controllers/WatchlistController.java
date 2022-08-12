@@ -35,7 +35,7 @@ public class WatchlistController {
 
     @PostMapping("/user/{userId}/name/{name}/movie/{movieId}/public/{isPublic}")
     public void postSaveWatchlist(@PathVariable String name,@PathVariable int userId,@PathVariable String movieId,@PathVariable Boolean isPublic) {
-         watchlistService.save(new Watchlist(name,userId,movieId,isPublic));
+         watchlistService.postSaveWatchlist(new Watchlist(name,userId,movieId,isPublic));
     }
 
     @DeleteMapping("/user/{userId}/movie/{movieId}")

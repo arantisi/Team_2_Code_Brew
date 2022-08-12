@@ -9,15 +9,11 @@ import java.util.List;
 @Repository
 public interface WatchlistRepository extends JpaRepository<Watchlist, Integer> {
 
-    //@Query(nativeQuery = true, value="Select * from watchlists where user_id=:userId")
+
     List<Watchlist> findByUserId(int userId);
     List<Watchlist> findByName(String name);
     List<Watchlist> findByUserIdAndName(int userId, String name);
-    //List<Watchlist> saveByUserIdAndNameAndMovieId(int userId, String name,String movieId);
 
-
-    //void saveByUserIdAndNameAndMovie(Watchlist watchlist);
-   // Watchlist save(Watchlist watchlist);
 
 
 
