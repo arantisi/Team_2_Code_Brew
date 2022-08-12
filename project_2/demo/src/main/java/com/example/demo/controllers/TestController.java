@@ -14,6 +14,7 @@ public class TestController {
     @GetMapping("/test")
     public ResponseEntity test(){
         s.getMoviesByTitle("avatar");
+        s.getMovieById("tt1285016");
         return ResponseEntity.ok(s);
     }
 }

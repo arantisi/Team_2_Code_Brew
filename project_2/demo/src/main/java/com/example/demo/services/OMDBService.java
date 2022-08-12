@@ -25,7 +25,7 @@ public class OMDBService {
         MovieList resp = restTemplate.getForObject(url, MovieList.class);
 
         if (resp == null)
-            return new ArrayList<Movie>();
+            return new ArrayList<>();
 
         //debugging
         //for (Movie m : resp.getList())
@@ -35,6 +35,13 @@ public class OMDBService {
     }
 
     public Movie getMovieById(String movieId) {
-        return null;
+        String url = "https://www.omdbapi.com/?apikey=12b87e4f&i=" + movieId;
+        Movie resp = restTemplate.getForObject(url, Movie.class);
+
+        if (resp == null)
+            return null;
+
+        System.out.println(resp);
+        return resp;
     }
 }

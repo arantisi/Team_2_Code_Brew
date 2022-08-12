@@ -8,7 +8,7 @@ import java.util.List;
 public class MovieList {
     @JsonProperty("Search")
     private List<Movie> movies;
-    
+
     public MovieList() {
         this.movies = new ArrayList<>();
     }
@@ -21,7 +21,4 @@ public class MovieList {
         this.movies = list;
     }
 
-    public void addMovie(Movie m) {
-        movies.add(m);
-    }
 }
