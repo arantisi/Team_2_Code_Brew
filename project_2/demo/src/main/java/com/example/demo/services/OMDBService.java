@@ -27,7 +27,7 @@ public class OMDBService {
         if (resp == null)
             return new ArrayList<>();
 
-        //debugging
+        // debugging
         //for (Movie m : resp.getList())
         //    System.out.println(m.getTitle());
 
@@ -41,7 +41,9 @@ public class OMDBService {
         if (resp == null)
             return null;
 
-        System.out.println(resp);
+        // debugging
+        //System.out.println(resp);
+
         return resp;
     }
 }
