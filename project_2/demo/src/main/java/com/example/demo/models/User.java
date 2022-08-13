@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,32 +15,50 @@ public class User {
     private String username;
 
     @Column(name="pass")
-    private String pass;
+    private String password;
+
+    // this code may be unnecessary
+    // maybe use a Set instead of a List
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", targetEntity = Watchlist.class, cascade = CascadeType.ALL)
+//    private List<Watchlist> watchlists;
+
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName="id")
-    private List<Watchlist> watchlists;
+    private List<Watchlist> watchlists = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName="id")
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName="id")
-    private List<Favorite> favorites;
+    private List<Favorite> favorites = new ArrayList<>();
+
+
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", targetEntity = Favorite.class, cascade = CascadeType.ALL)
+//    private List<Favorite> favoriteList;
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", targetEntity = Review.class, cascade = CascadeType.ALL)
+//    private List<Review> reviewList;
 
     public User() {}
 
-    public User(int id, String username, String pass) {
+    public User(int id, String username, String password) {
         this.id = id;
         this.username = username;
-        this.pass = pass;
+        this.password = password;
     }
 
-    public User(int id, String username, String pass, List<Watchlist> watchlists, List<Review> reviews, List<Favorite> favorites) {
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(int id, String username, String password, List<Watchlist> watchlists, List<Review> reviews, List<Favorite> favorites) {
         this.id = id;
         this.username = username;
-        this.pass = pass;
+        this.password = password;
         this.watchlists = watchlists;
         this.reviews = reviews;
         this.favorites = favorites;
@@ -61,12 +80,12 @@ public class User {
         this.username = username;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String pass) {
+        this.password = pass;
     }
 
     public List<Watchlist> getWatchlists() {
