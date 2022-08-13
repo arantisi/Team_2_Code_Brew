@@ -27,7 +27,11 @@ public class WatchlistController {
         return watchlistService.getWatchlistByUserId(userId);
     }
 
-
+    /**
+     * Don't need Path Variable. Get user id from authentication.
+     * @param authentication Authentication is imported from Spring Security
+     * @return
+     */
     @GetMapping("/user")
     public List<Watchlist> getWatchListByUserId(Authentication authentication) {
         String username = authentication.getName();
