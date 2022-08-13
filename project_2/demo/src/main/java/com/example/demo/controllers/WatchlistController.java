@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.User;
 import com.example.demo.models.Watchlist;
 import com.example.demo.services.UserService;
 import com.example.demo.services.WatchlistService;
