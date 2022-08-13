@@ -20,6 +20,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String homeView(Authentication auth, Model model) {
+        model.addAttribute("something", "this is coming from the Home Controller");
         User user = userService.getUserByUsername(auth.getName());
         System.out.println("Hey, it's " + user.getUsername());
 
