@@ -1,15 +1,16 @@
 package com.example.demo.models;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
-public class MyUserDetails implements UserDetails{
+import java.util.Collection;
+
+
+public class MyUserDetails implements UserDetails {
+
+    private static final long serialVersionUID = 1L;
 
     private User user;
     private String username;
@@ -32,6 +33,10 @@ public class MyUserDetails implements UserDetails{
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override

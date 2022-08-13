@@ -7,12 +7,12 @@
 </head>
 <body>
 
-<div class="login" action=""  method="post" th:if="${param.error}">
-    <p th:text="${session.error}" th:unless="${session == null}">[...]</p>
+<div class="login" th:action="/user"  method="post" ><!--th:if="${param.error}"-->
+    <!--<p th:text="${session.error}" th:unless="${session == null}">[...]</p>-->
     <h1>Login</h1>
-  <form method="post" th:action="@{/user}">
-    <input type="text" name="u" placeholder="Username" required="required" />
-    <input type="password" name="p" placeholder="Password" required="required" />
+    <form method="post">
+        <input type="text" name="username" placeholder="Username" required="required" />
+        <input type="password" name="password" placeholder="Password" required="required" />
     <button type="submit" class="btn btn-primary btn-block btn-large">Login</button>
   </form>
 </div>
