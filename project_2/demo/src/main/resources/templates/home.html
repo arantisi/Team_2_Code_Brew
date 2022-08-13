@@ -5,6 +5,17 @@
     <title>Movie Tracker app</title>
 </head>
 <body>
+
+<div class="container">
+    <div id="logoutDiv">
+        <form th:action="@{/logout}" action="#" method="POST">
+            <button id="logout" type="submit" onclick="this.parentNode.submit()" class="btn btn-secondary float-right">
+                Logout
+            </button>
+        </form>
+    </div>
+
+
 <h1>Welcome to Movie Tracker</h1>
 <h2 th:text="${something}" />
 <a href="http://localhost:8080/watchlist/user">Click to view your Watchlists</a>
