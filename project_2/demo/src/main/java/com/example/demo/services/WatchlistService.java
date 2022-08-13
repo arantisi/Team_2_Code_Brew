@@ -15,7 +15,7 @@ public class WatchlistService {
     @Autowired
     private WatchlistRepository watchlistRepo;
 
-    public List<Watchlist> getWatchlistByUser(int userId) {
+    public List<Watchlist> getWatchlistByUserId(int userId) {
         return watchlistRepo.findByUserId(userId);
     }
 

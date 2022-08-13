@@ -18,7 +18,7 @@ public class WatchlistController {
 
     @GetMapping("/user/{userId}")
     public List<Watchlist> getWatchListByUserId(@PathVariable int userId) {
-        return watchlistService.getWatchlistByUser(userId);
+        return watchlistService.getWatchlistByUserId(userId);
     }
 
     @GetMapping

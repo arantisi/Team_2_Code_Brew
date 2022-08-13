@@ -18,4 +18,11 @@ public class ReviewService {
     public List<Review> getReviewsByUser(int userId) {
         return reviewRepository.findByUserId(userId);
     }
+
+    public void createReview(Review review) {
+        reviewRepository.save(review);
+    }
+
+//    public void deleteReview()
+
 }
