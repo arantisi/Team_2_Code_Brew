@@ -36,14 +36,14 @@ public class User {
         this.pass = pass;
     }
 
-    public User(int id, String username, String pass, List<Watchlist> watchlists, List<Review> reviews, List<Favorite> favorites) {
+    /*public User(int id, String username, String pass, List<Watchlist> watchlists, List<Review> reviews, List<Favorite> favorites) {
         this.id = id;
         this.username = username;
         this.pass = pass;
         this.watchlists = watchlists;
         this.reviews = reviews;
         this.favorites = favorites;
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -69,7 +69,7 @@ public class User {
         this.pass = pass;
     }
 
-    public List<Watchlist> getWatchlists() {
+   /* public List<Watchlist> getWatchlists() {
         return watchlists;
     }
 
@@ -91,5 +91,5 @@ public class User {
 
     public void setFavorites(List<Favorite> favorites) {
         this.favorites = favorites;
-    }
+    }*/
 }

@@ -1,10 +1,7 @@
 package com.example.demo.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
@@ -13,10 +10,17 @@ import java.io.PrintWriter;
 @RequestMapping("")
 public class UserController {
 
-    @GetMapping("")
+    @GetMapping("/")
     public String login() {
+
         return "forward:html/Login.html";
     }
+
+    @GetMapping("/user")
+    public String user(HttpSession session,@RequestParam(defaultValue="Guest") String u,@RequestParam(required = false) String p) {
+        return "<h1>Welcome User</h1>";
+    }
+
 
     @PostMapping("")
     public String homepage(HttpSession session,@RequestParam(defaultValue="Guest") String u,@RequestParam(required = false) String p) {
