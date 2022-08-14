@@ -25,7 +25,9 @@ public class OMDBService {
     }
 
     public List<Movie> getMoviesByTitle(String movieTitle) {
-        String url = "https://www.omdbapi.com/?apikey="+api_key+"&s=" + movieTitle;
+        String url = "https://www.omdbapi.com/?apikey=" + api_key +
+                "&s=" + movieTitle +
+                "&type=movie";
         MovieList resp = restTemplate.getForObject(url, MovieList.class);
 
         if (resp == null) // No movies found
@@ -42,7 +44,10 @@ public class OMDBService {
         if (page < 1 || page > 100) // Invalid page
             return new ArrayList<>();
 
-        String url = "https://www.omdbapi.com/?apikey="+api_key+"&s=" + movieTitle + "&page=" + page;
+        String url = "https://www.omdbapi.com/?apikey=" + api_key +
+                "&s=" + movieTitle +
+                "&type=movie" +
+                "&page=" + page;
         MovieList resp = restTemplate.getForObject(url, MovieList.class);
 
         if (resp == null) // No movies found
