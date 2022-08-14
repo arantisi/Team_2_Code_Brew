@@ -6,9 +6,16 @@ function searchForTitle(title) {
     fetch(`/omdb/searchName/${title}`)
         .then(resp=>resp = resp.json())
         .then(obj=>{
+            //console.log(obj);
             for (let movie of obj) { // populate table
                 let a = moviesItemTemplate.cloneNode(true);
-                a.querySelector("#movieName").textContent = movie.Title;
+                a.setAttribute("imdbId", movie.imdbID);
+                a.querySelector("#movieName").textContent = movie.Title+", "+movie.year;
+                a.querySelector("#icon").setAttribute("src", movie.poster);
+                a.querySelector("#view").setAttribute("imdbId", a.imdbID);
+                a.querySelector("#view").onclick = ()=> {
+                    console.log("clicked more info, " + movie.imdbID);
+                };
                 moviesList.appendChild(a);
             }
         })
@@ -33,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#button-movie-search").onclick = ((evt)=>{
         evt.preventDefault();
         clearMoviesList();
-        
+
         let searchStr = document.querySelector("#input-movie-search").value.toLowerCase();
         if (searchStr !== "") 
             searchForTitle(searchStr);
