@@ -14,25 +14,7 @@ nav {
     background-color: #FFAC6B;
 }
 
-/* For all the links */
-a {
-    text-decoration: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: color 0.15s ease-out 100ms;
-    font-weight: 700;
-    color: black;
-}
-
-a:visited {
-    color: black;
-  }
-
-a:hover {
-    color: white;
-}
-
-/* For The movies in the search page */
+/* For the movies in the movie search page */
 .movie-search-list {
     display: flex;
     flex-direction: column;
