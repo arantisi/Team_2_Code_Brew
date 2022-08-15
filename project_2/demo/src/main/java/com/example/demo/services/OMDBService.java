@@ -30,14 +30,7 @@ public class OMDBService {
                 "&type=movie";
         MovieList resp = restTemplate.getForObject(url, MovieList.class);
 
-        if (resp == null) // No movies found
-            return new ArrayList<>();
-
-        // debugging
-        //for (Movie m : resp.getList())
-        //    System.out.println(m.getTitle());
-
-        return resp.getList();
+        return resp != null? resp.getList() : new ArrayList<>();
     }
 
     public List<Movie> getMoviesByTitle(String movieTitle, int page) {
@@ -50,26 +43,13 @@ public class OMDBService {
                 "&page=" + page;
         MovieList resp = restTemplate.getForObject(url, MovieList.class);
 
-        if (resp == null) // No movies found
-            return new ArrayList<>();
-
-        // debugging
-        //for (Movie m : resp.getList())
-        //    System.out.println(m.getTitle());
-
-        return resp.getList();
+        return resp != null? resp.getList() : new ArrayList<>();
     }
 
     public Movie getMovieById(String movieId) {
         String url = "https://www.omdbapi.com/?apikey="+api_key+"&i=" + movieId;
-        Movie resp = restTemplate.getForObject(url, Movie.class);
+        System.out.println(url);
 
-        if (resp == null)
-            return null;
-
-        // debugging
-        //System.out.println(resp);
-
-        return resp;
+        return restTemplate.getForObject(url, Movie.class);
     }
 }
