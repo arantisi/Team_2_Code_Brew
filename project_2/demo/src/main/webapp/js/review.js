@@ -1,1 +1,1 @@
-console.log("hellow review world");
+console.log("my reviews page");
