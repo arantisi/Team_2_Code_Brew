@@ -14,8 +14,6 @@ function searchForTitle(id) {
             desc.innerHTML = obj.plot;
         })
         .catch(err=>console.log("error encountered while fetching title"));
-    
-    
 }
 
 // On DOM loaded
@@ -29,7 +27,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     
-        
-    let movie = searchForTitle(id);
+    // Review button on click
+    document.querySelector("#review-btn").onclick = (evt)=>{
+        let userReview = document.querySelector("#message-text").value;
+        console.log(userReview);
+    }
+
+    // Favorites button on click
+    document.querySelector("#favorites-btn").onclick = (evt)=>{
+        console.log("add to favorites");
+    }
+
+    // Watchlist button on click
+    document.querySelector("#watchlist-btn").onclick = (evt)=>{
+        console.log("add to watchlist");
+    }
+
+    searchForTitle(id);
+
     
 })
