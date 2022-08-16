@@ -26,24 +26,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // from stackoverflow https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
-    
+
+    let userRating = 0;
+    // Review rating stars click
+    document.querySelectorAll(".rating-star").forEach((n)=>{
+        n.onclick = () => userRating = n.getAttribute('value');
+    });
+
     // Review button on click
     document.querySelector("#review-btn").onclick = (evt)=>{
+        if (userRating < 1) {
+            console.log("Select user rating");
+            return;
+        }
+
         let userReview = document.querySelector("#message-text").value;
-        console.log(userReview);
+        console.log(userRating, userReview);
     }
 
     // Favorites button on click
     document.querySelector("#favorites-btn").onclick = (evt)=>{
-        console.log("add to favorites");
+        console.log("add to favorites " + id);
     }
 
     // Watchlist button on click
     document.querySelector("#watchlist-btn").onclick = (evt)=>{
-        console.log("add to watchlist");
+        console.log("add to watchlist " + id);
     }
 
     searchForTitle(id);
-
-    
 })
