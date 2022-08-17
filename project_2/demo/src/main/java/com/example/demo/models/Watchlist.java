@@ -2,7 +2,7 @@ package com.example.demo.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "watchlists")
+@Table(name="watchlists")
 public class Watchlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,13 +18,13 @@ public class Watchlist {
     public Watchlist() {
     }
 
-    /*public Watchlist(int id, String name, int userID, String movieId, boolean isPublic) {
+    public Watchlist(int id, String name, int userID, String movieId, boolean isPublic) {
         this.id = id;
         this.name = name;
         this.userId = userID;
         this.movieId = movieId;
         this.isPublic = isPublic;
-    }*/
+    }
 
     public Watchlist(String name, int userId, String movieId, boolean isPublic) {
         this.name = name;
@@ -72,4 +72,5 @@ public class Watchlist {
     public void setPublic(boolean aPublic) {
         isPublic = aPublic;
     }
+
 }

@@ -32,15 +32,22 @@ public class WatchlistService {
     }
 
     public void deleteWatchlistByUserIdAndMovieId(int userId,String movieId) {
-         watchlistRepo.deleteByUserIdAndMovieId(userId,movieId);
+        watchlistRepo.deleteByUserIdAndMovieId(userId,movieId);
     }
 
 
 
     public void postSaveWatchlist(Watchlist watchlist)
     {
-         watchlistRepo.save(watchlist);
+        watchlistRepo.save(watchlist);
     }
+
+    public void addToWatchlist(Watchlist watchlist)
+    {
+        watchlistRepo.save(watchlist);
+    }
+
+
 
 
 }

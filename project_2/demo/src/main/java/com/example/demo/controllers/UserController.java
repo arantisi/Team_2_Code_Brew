@@ -1,40 +1,30 @@
 package com.example.demo.controllers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.util.Optional;
-import com.example.demo.models.MyUserDetails;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import com.example.demo.models.User;
+import com.example.demo.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+
 @RestController
-@RequestMapping("")
+@RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("/user")
-    public String user(HttpSession session, @RequestParam(defaultValue = "Guest") String u,
-                       @RequestParam(required = false) String p) {
-        MyUserDetails details = (MyUserDetails) Optional
-                .ofNullable(SecurityContextHolder.getContext().getAuthentication()).map(Authentication::getPrincipal)
-                .orElse(null);
+    @Autowired
+    private UserService userService;
 
-        if (details == null) {
-            return "<h1>Unauthenticated</h1>";
-        } else {
-            return "<h1>Welcome " + details.getUsername() + "</h1>";
-        }
-    }
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public User getUserById(@PathVariable int id) {
 
-    @PostMapping("")
-    public String homepage(HttpSession session, @RequestParam(defaultValue = "Guest") String u,
-                           @RequestParam(required = false) String p) {
-        System.out.println(u);
-        System.out.println(p);
-        session.setAttribute("u", u);
-        session.setAttribute("p", p);
-        // AccountsRepo.login(u,p);
 
-        return u;
+        return userService.getUserById(id);
+
     }
 }

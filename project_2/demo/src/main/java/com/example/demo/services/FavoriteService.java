@@ -18,4 +18,12 @@ public class FavoriteService {
     public List<Favorite> getFavoritesByUser(int userId) {
         return favoriteRepository.findByUserId(userId);
     }
+
+    public Favorite addToFavorites(Favorite favorite) {
+        return favoriteRepository.save(favorite);
+    }
+
+    public void deleteFromFavorites(int userId,String movieId) {
+        favoriteRepository.deleteByUserIdAndMovieId(userId,movieId);
+    }
 }

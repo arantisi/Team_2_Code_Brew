@@ -3,6 +3,8 @@ server:
   servlet:
     context-path:
 
+OMDB_api_key: 12b87e4f
+
 
 myapp:
   value: "Doing Work"
@@ -16,6 +18,7 @@ spring:
     password: pgdav9280
     url: jdbc:postgresql://mypostgresdb.ctpoxfycgbg6.us-east-1.rds.amazonaws.com:5432/movies_db
     driver-class-name: org.postgresql.Driver
+
 
 
 logging:
