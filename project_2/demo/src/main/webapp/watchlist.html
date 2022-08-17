@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist</title>
+    <style>
+        #watchlist {
+            display :grid;
+            grid-template-columns: repeat(3,1fr);
+            justify-items:center;
+            row-gap: 2em;
+        }
+        .poster{
+            display: inline-block;
+            width:450px;
+            height:300px;
+            padding: 1.5em;
+            box-shadow: 2px;
+            transition: box-shadow 200ms ease-in-out;
+            text-align: justify;
+        }
+        .posters-hover{
+            transform:scale(3,4.5);
+            outline:1px solid black;
+            box-shadow: 2px #888;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="d-flex p-2 watchlist">
+        <div class="watchlist-item">
+            <img class="poster" id="icon" src="" alt="Movie poster"></img>
+            <p id = "movieName">Some Text</p>
+        </div>
+    </div>
+</body>
+</html>

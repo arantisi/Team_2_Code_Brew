@@ -32,6 +32,7 @@ function clearMoviesList() {
 // On DOM loaded
 document.addEventListener('DOMContentLoaded', () => {
     // set up some stuff
+    console.log("test");
     moviesList = document.querySelector(".movie-search-list")
     let a = document.querySelector(".movie-search-item")
     moviesItemTemplate = a.cloneNode(true);
