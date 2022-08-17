@@ -1,14 +1,17 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.ClientDataPostReview;
 import com.example.demo.models.CustomUserDetails;
 import com.example.demo.models.Favorite;
 import com.example.demo.models.Review;
 import com.example.demo.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 
 @RestController
@@ -32,22 +35,12 @@ public class ReviewController {
 
     // create a review
     // Not sure if 2 @Requestbody will work. Uncomment out the next createReview method if you think it would work.
-    @PostMapping("/create/{movieId}")
-    public void createReview(@RequestBody String review, @RequestBody int rating, @PathVariable String movieId) {
-        System.out.println("hello world");
+    @PostMapping(value = "/create/{movieId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createReview(@RequestBody ClientDataPostReview data, @PathVariable String movieId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-        reviewService.createReview(new Review(user.getId(), movieId, rating, review));
+        reviewService.createReview(new Review(user.getId(), movieId, Integer.parseInt(data.getRating()), data.getReview()));
     }
-
-    // Pass in a review w/o userId. You can add the movieId to the review in the front-end and remove {movieId} from this URI
-//    @PostMapping("/create/{movieId}")
-//    public void createReview(@RequestBody Review review, @PathVariable String movieId) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-//        review.setUserId(user.getId());
-//        reviewService.createReview(review);
-//    }
 
     //     Creates a Review with a default rating of 1
     @PostMapping("/create/review/{movieId}")

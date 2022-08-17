@@ -26,7 +26,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-
     @Bean
     AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider
@@ -38,10 +37,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+
         http.authorizeRequests()
                 .antMatchers("/")
                 .permitAll()
@@ -57,11 +56,5 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .addLogoutHandler(new HeaderWriterLogoutHandler(
                         new ClearSiteDataHeaderWriter(ClearSiteDataHeaderWriter.Directive.COOKIES)));
-
-
-
-
-
     }
-
 }
