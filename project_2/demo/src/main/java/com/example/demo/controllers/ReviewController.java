@@ -34,6 +34,7 @@ public class ReviewController {
     // Not sure if 2 @Requestbody will work. Uncomment out the next createReview method if you think it would work.
     @PostMapping("/create/{movieId}")
     public void createReview(@RequestBody String review, @RequestBody int rating, @PathVariable String movieId) {
+        System.out.println("hello world");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
         reviewService.createReview(new Review(user.getId(), movieId, rating, review));
