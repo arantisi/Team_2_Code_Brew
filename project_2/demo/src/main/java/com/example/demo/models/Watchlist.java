@@ -2,7 +2,7 @@ package com.example.demo.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "watchlists")
+@Table(name="watchlists")
 public class Watchlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,13 @@ public class Watchlist {
     private boolean isPublic = true;
 
     public Watchlist() {
+    }
+
+    public Watchlist(String name, int userId, String movieId, boolean isPublic) {
+        this.name = name;
+        this.userId = userId;
+        this.movieId = movieId;
+        this.isPublic = isPublic;
     }
 
     public Watchlist(int id, String name, int userID, String movieId, boolean isPublic) {

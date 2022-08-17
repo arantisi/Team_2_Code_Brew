@@ -25,7 +25,7 @@ function searchForTitle(title) {
 
 // Clear movies list
 function clearMoviesList() {
-    while (moviesList.firstChild) 
+    while (moviesList.firstChild)
         moviesList.firstChild.remove();
 }
 
@@ -36,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let a = document.querySelector(".movie-search-item")
     moviesItemTemplate = a.cloneNode(true);
     a.remove();
-    
+
     // attach click event to search button
     document.querySelector("#button-movie-search").onclick = ((evt)=>{
         evt.preventDefault();
         clearMoviesList();
 
         let searchStr = document.querySelector("#input-movie-search").value.toLowerCase();
-        if (searchStr !== "") 
+        if (searchStr !== "")
             searchForTitle(searchStr);
     })
 })
