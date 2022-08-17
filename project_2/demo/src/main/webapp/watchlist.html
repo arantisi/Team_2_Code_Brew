@@ -13,28 +13,30 @@
             row-gap: 2em;
         }
         .poster{
-            display: inline-block;
-            width:450px;
-            height:300px;
+            display: inline-block;  
+            width:300px;
+            height:450px;
             padding: 1.5em;
             box-shadow: 2px;
             transition: box-shadow 200ms ease-in-out;
-            text-align: justify;
+            text-align: center;
         }
-        .posters-hover{
-            transform:scale(3,4.5);
+        .poster:hover{
+            transform:scale(1.05);
             outline:1px solid black;
-            box-shadow: 2px #888;
+            box-shadow: 2px rgb(0, 0, 0);
         }
     </style>
 </head>
 <body>
     
     <div class="d-flex p-2 watchlist">
-        <div class="watchlist-item">
-            <img class="poster" id="icon" src="" alt="Movie poster"></img>
+        <div class="poster">
+            <img id="icon" src="" alt="Movie poster"></img>
             <p id = "movieName">Some Text</p>
         </div>
     </div>
+    <script src="js/watchlist.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

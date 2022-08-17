@@ -23,9 +23,6 @@ public class WatchlistService {
         return watchlistRepo.findAll();
     }
 
-    public List<Watchlist> getWatchlistByName(int userId, String watchName) {
-        return watchlistRepo.findByName(userId, watchName);
-    }
 
 
 }

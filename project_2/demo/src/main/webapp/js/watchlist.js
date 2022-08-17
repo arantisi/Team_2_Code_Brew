@@ -1,20 +1,21 @@
 
 let moviesList;
 let posterTemplate;
-function searchForWatchlist(id){
-    fetch(`/watchlist/${id}`)
-        .then(resp=>resp = resp.json())
+function searchForWatchlist(){
+    console.log("test1");
+    fetch(`/watchlist/public`)
+        .then((resp)=>{console.log(resp); return resp.json()})
         .then(obj=>{
-            console.log(obj);
-            for (let movie of obj) { // populate table
-                let a = posterTemplate.cloneNode(true);
-                a.setAttribute("imdbId", movie.imdbID);
-                a.querySelector("#movieName").textContent = movie.Title+", "+movie.year;
-                a.querySelector("#icon").setAttribute("src", movie.poster);
-                moviesList.appendChild(a);
+            for (let watchItem of obj) { //go through the list of movies
+                console.log(watchItem)
+                fetch(`/omdb/searchId/${watchItem.movieId}`)
+                .then((resp)=> resp = resp.json())
+                .then(mov=>{
+                    console.log(mov);
+                })
             }
         })
-        .catch(err=>console.log("error encountered while fetching title"));
+        .catch(err=>console.log("error encountered while fetching title " + err));
 }
 //dom LOADED
 document.addEventListener('DOMContentLoaded', () => {

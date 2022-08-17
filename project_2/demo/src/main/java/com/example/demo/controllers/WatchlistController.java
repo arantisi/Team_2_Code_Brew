@@ -21,7 +21,7 @@ public class WatchlistController {
         return watchlistService.getWatchlistByUser(userId);
     }
 
-    @GetMapping
+    @GetMapping ("/public")
     public List<Watchlist> getAllWatchlists() {
         return watchlistService.getAllWatchlists();
     }
