@@ -48,7 +48,6 @@ public class OMDBService {
 
     public Movie getMovieById(String movieId) {
         String url = "https://www.omdbapi.com/?apikey="+api_key+"&i=" + movieId;
-        System.out.println(url);
 
         return restTemplate.getForObject(url, Movie.class);
     }

@@ -13,6 +13,7 @@ public class TestController {
 
     @GetMapping("/test")
     public ResponseEntity test(){
+        System.out.println("dummy print test");
         s.getMoviesByTitle("avatar");
         s.getMovieById("tt1285016");
         return ResponseEntity.ok(s);
