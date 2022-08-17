@@ -48,29 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
             review: userReview,
             rating: userRating
         }
+
         // Send POST request to endpoint
         fetch(`/review/create/${id}`, {
             method: "POST",
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+              },
         }).then(()=>{
             console.log("sentPOST");
         }).catch((err) => {
             console.log("Failed to POST data");
         })
-
-        // double checking.. sending to get
-        fetch("/review/user")
-            .then((resp)=>{
-                resp=resp.json();
-            })
-            .then(obj=>{
-                console.log("GET success user reviews obj");
-                console.log(obj); // This obj is undefined, which means the server never sent it
-            })
-            .catch((err) => {
-                console.log("Failed to GET data");
-                console.log(err);
-            })
     }
 
     // Favorites button on click

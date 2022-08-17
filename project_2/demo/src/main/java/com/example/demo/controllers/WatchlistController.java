@@ -17,8 +17,6 @@ public class WatchlistController {
     @Autowired
     private WatchlistService watchlistService;
 
-
-
     @GetMapping("/user")
     public List<Watchlist> getUserWatchlist() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
