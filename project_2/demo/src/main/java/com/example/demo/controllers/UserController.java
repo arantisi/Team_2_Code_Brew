@@ -1,36 +1,30 @@
 package com.example.demo.controllers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
+import com.example.demo.models.User;
+import com.example.demo.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 
-@Controller
-@RequestMapping("")
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+
+@RestController
+@RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("/")
-    public String login() {
+    @Autowired
+    private UserService userService;
 
-        return "forward:html/Login.html";
-    }
-
-    @GetMapping("/user")
-    public String user(HttpSession session,@RequestParam(defaultValue="Guest") String u,@RequestParam(required = false) String p) {
-        return "<h1>Welcome User</h1>";
-    }
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public User getUserById(@PathVariable int id) {
 
 
-    @PostMapping("")
-    public String homepage(HttpSession session,@RequestParam(defaultValue="Guest") String u,@RequestParam(required = false) String p) {
+        return userService.getUserById(id);
 
-        System.out.println(u);
-        System.out.println(p);
-        session.setAttribute("u",u);
-        session.setAttribute("p",p);
-        //AccountsRepo.login(u,p);
-
-        return u;
     }
 }
