@@ -1,10 +1,12 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.ClientDataPostReview;
 import com.example.demo.models.CustomUserDetails;
 import com.example.demo.models.Favorite;
 import com.example.demo.models.Review;
 import com.example.demo.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +20,7 @@ public class ReviewController {
     @Autowired
     ReviewService reviewService;
 
-//    @GetMapping("/user/{userId}")
-//    public List<Review> getUserReviews(@PathVariable int userId) {
-//        return reviewService.getReviewsByUser(userId);
-//    }
+
 
     @GetMapping("/user")
     public List<Review> getUserReviews() {
@@ -32,11 +31,11 @@ public class ReviewController {
 
     // create a review
     // Not sure if 2 @Requestbody will work. Uncomment out the next createReview method if you think it would work.
-    @PostMapping("/create/{movieId}")
-    public void createReview(@RequestBody String review, @RequestBody int rating, @PathVariable String movieId) {
+    @PostMapping(value = "/create/{movieId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createReview(@RequestBody ClientDataPostReview data, @PathVariable String movieId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-        reviewService.createReview(new Review(user.getId(), movieId, rating, review));
+        reviewService.createReview(new Review(user.getId(), movieId, Integer.parseInt(data.getRating()), data.getReview()));
     }
 
     // Pass in a review w/o userId. You can add the movieId to the review in the front-end and remove {movieId} from this URI

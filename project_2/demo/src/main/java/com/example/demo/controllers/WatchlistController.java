@@ -5,6 +5,7 @@ import com.example.demo.models.CustomUserDetails;
 import com.example.demo.models.Watchlist;
 import com.example.demo.services.WatchlistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,9 @@ public class WatchlistController {
         watchlistService.deleteWatchlistByUserIdAndMovieId(user.getId(),movieId);
     }
 
-    @PostMapping("user/create/movie/{movieId}")
+    //@PostMapping("/user/create/movie/{movieId}")
+    //@RequestMapping(value = "/user/create/movie/{movieId}", method = RequestMethod.POST)
+    @PostMapping(value = "user/create/{movieId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addToWatchlist(@PathVariable String movieId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();

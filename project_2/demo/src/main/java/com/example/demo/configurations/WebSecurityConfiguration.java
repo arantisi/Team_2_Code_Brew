@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -26,6 +28,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /*@Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }*/
+
 
     @Bean
     AuthenticationProvider authenticationProvider() {
@@ -40,17 +47,22 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 
-    @Override
+    /*@Override
     protected void configure(HttpSecurity http) throws Exception {
+        //http.csrf().disable()
         http.authorizeRequests()
+                //.authorizeRequests()
                 .antMatchers("/")
                 .permitAll()
+                //.antMatchers(HttpMethod.POST,"/watchlist/user/**")
                 .antMatchers("/user")
                 .hasAuthority("user")
-                .antMatchers("/admin")
-                .hasAuthority("admin")
                 .anyRequest()
                 .authenticated()
+                *//*.antMatchers("/admin")
+                .hasAuthority("admin")
+                .anyRequest()
+                .authenticated()*//*
                 .and()
                 .formLogin()
                 .and()
@@ -58,10 +70,33 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addLogoutHandler(new HeaderWriterLogoutHandler(
                         new ClearSiteDataHeaderWriter(ClearSiteDataHeaderWriter.Directive.COOKIES)));
 
+        http.csrf().disable();
+    }*/
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        //http.csrf().disable()
+        http.authorizeRequests()
+                //.authorizeRequests()
+                .antMatchers("/")
+                .permitAll()
+                .antMatchers(HttpMethod.POST,"/user","/watchlist/user/**","/reviews/create/**")
+                //.antMatchers("/user")
+                .hasAuthority("user")
+                .anyRequest()
+                .authenticated()
+                /*.antMatchers("/admin")
+                .hasAuthority("admin")
+                .anyRequest()
+                .authenticated()*/
+                .and()
+                .formLogin()
+                .and()
+                .logout()
+                .addLogoutHandler(new HeaderWriterLogoutHandler(
+                        new ClearSiteDataHeaderWriter(ClearSiteDataHeaderWriter.Directive.COOKIES)));
 
-
-
+        http.csrf().disable();
     }
 
 }

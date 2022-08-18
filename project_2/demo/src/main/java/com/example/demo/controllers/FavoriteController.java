@@ -5,6 +5,7 @@ import com.example.demo.models.Favorite;
 import com.example.demo.services.FavoriteService;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -48,8 +49,8 @@ public class FavoriteController {
         favoriteService.addToFavorites(new Favorite(userId, movieId));
     }
 
-    @PostMapping("/movie/{movieId}")
-    public void addToFavorites(@PathVariable String movieId) {
+    @PostMapping(value = "user/create/{movieId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void addToFavorites( @PathVariable String movieId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
         favoriteService.addToFavorites(new Favorite(user.getId(), movieId));

@@ -15,6 +15,7 @@ function searchForTitle(title) {
                 a.querySelector("#view").setAttribute("imdbId", a.imdbID);
                 a.querySelector("#view").onclick = ()=> {
                     console.log("clicked more info, " + movie.imdbID);
+                    window.location.href = "movieinfo.html?id=" + movie.imdbID;
                 };
                 moviesList.appendChild(a);
             }
@@ -45,5 +46,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if (searchStr !== "")
             searchForTitle(searchStr);
     })
-
 })
