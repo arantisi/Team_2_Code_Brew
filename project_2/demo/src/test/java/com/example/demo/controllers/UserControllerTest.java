@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 
 class UserControllerTest {
 
-    @InjectMocks
+    /*@InjectMocks
     UserController userController;
 
     @Mock
@@ -106,6 +106,6 @@ class UserControllerTest {
         assertEquals(userDetails.getUsername(),user.getUsername());
         assertEquals(userDetails.getPassword(),user.getPassword());
 
-    }
+    }*/
 
 }
