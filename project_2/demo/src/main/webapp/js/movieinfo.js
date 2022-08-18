@@ -77,7 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Watchlist button on click
     document.querySelector("#watchlist-btn").onclick = (evt)=>{
-        console.log("add to watchlist " + id);
+        // Send POST request to endpoint
+        fetch(`/watchlist/user/create/movie/${id}`, {
+            method: "POST",
+            }).then(()=>{
+                console.log("Sent add to watchlist req")
+            }).catch((err) => {
+                console.log("Failed to POST data");
+            })
     }
 
     searchForTitle(id);
