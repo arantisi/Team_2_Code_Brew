@@ -45,6 +45,27 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+
+        http.authorizeRequests()
+                .antMatchers("/")
+                .permitAll()
+                .antMatchers("/user")
+                .hasAuthority("user")
+                .antMatchers("/admin")
+                .hasAuthority("admin")
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .and()
+                .logout()
+                .addLogoutHandler(new HeaderWriterLogoutHandler(
+                        new ClearSiteDataHeaderWriter(ClearSiteDataHeaderWriter.Directive.COOKIES)));
+    }
+
 
 
     /*@Override
@@ -73,7 +94,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }*/
 
-    @Override
+    /*@Override
     protected void configure(HttpSecurity http) throws Exception {
         //http.csrf().disable()
         http.authorizeRequests()
@@ -85,10 +106,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .hasAuthority("user")
                 .anyRequest()
                 .authenticated()
-                /*.antMatchers("/admin")
+                *//*.antMatchers("/admin")
                 .hasAuthority("admin")
                 .anyRequest()
-                .authenticated()*/
+                .authenticated()*//*
                 .and()
                 .formLogin()
                 .and()
@@ -97,6 +118,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         new ClearSiteDataHeaderWriter(ClearSiteDataHeaderWriter.Directive.COOKIES)));
 
         http.csrf().disable();
-    }
+    }*/
 
 }
