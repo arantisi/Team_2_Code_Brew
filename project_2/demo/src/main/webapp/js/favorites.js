@@ -3,12 +3,12 @@ let moviesList;
 let posterTemplate;
 function searchForWatchlist(){
     console.log("test1");
-    fetch(`/watchlist/user`)
+    fetch(`/favorite/user`)
         .then((resp)=>{resp = resp.json()})
         .then(obj=>{
-            for (let watchItem of obj) { //go through the list of movies
-                console.log(watchItem)
-                fetch(`/omdb/searchId/${watchItem.movieId}`)
+            for (let favItem of obj) { //go through the list of movies
+                console.log(favItem)
+                fetch(`/omdb/searchId/${favItem.movieId}`)
                 .then((resp)=> resp = resp.json())
                 .then(mov=>{
                     console.log(mov);

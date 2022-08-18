@@ -23,9 +23,11 @@ public class FavoriteController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/user")
     public List<Favorite> getUserFavorites(@PathVariable int userId) {
-        return favoriteService.getFavoritesByUser(userId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        return favoriteService.getFavoritesByUser(user.getId());
     }
 
 
