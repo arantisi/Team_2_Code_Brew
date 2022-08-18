@@ -14,7 +14,7 @@ import java.util.Arrays;
 /**
  * AspectLogger
  *
- * Handles the generic logging of every single method from every single class.
+ * Handles the generic logging of classes
  *
  * @author Tyler Kukkola
  */
@@ -24,19 +24,32 @@ public class AspectLogger {
     private static Logger logger = LogManager.getLogger(AspectLogger.class.getName());
 
     /***************************************************
-     * Handles logging of OMDBController methods
+     * Handles generic logging of EVERY controller class
      */
-    @Before("execution(* com.example.demo.controllers.OMDBController.search*(..))")
-    public void beforeOMDBController(JoinPoint p) {
+    @Before("execution(* com.example.demo.controllers.*Controller.*(..))")
+    public void beforeController(JoinPoint p) {
         Signature sig = p.getSignature();
-        logger.info("Entered " + sig.getName() + " " + Arrays.toString(p.getArgs()));
+        logger.info("Entered Controller " + sig.getName() + " " + Arrays.toString(p.getArgs()));
     }
 
-    @After("execution(* com.example.demo.controllers.OMDBController.search*(..))")
-    public void afterOMDBController(JoinPoint p) {
+    @After("execution(* com.example.demo.controllers.*Controller.*(..))")
+    public void afterController(JoinPoint p) {
         Signature sig = p.getSignature();
-        logger.info("Returned from " + sig.getName());
+        logger.info("Returned from Controller " + sig.getName());
     }
 
-    // more logging coverage would go here
+    /***************************************************
+     * Handles generic logging of EVERY controller class
+     */
+    @Before("execution(* com.example.demo.services.*Service.*(..))")
+    public void beforeService(JoinPoint p) {
+        Signature sig = p.getSignature();
+        logger.info("Entered Service " + sig.getName() + " " + Arrays.toString(p.getArgs()));
+    }
+
+    @After("execution(* com.example.demo.services.*Service.*(..))")
+    public void afterService(JoinPoint p) {
+        Signature sig = p.getSignature();
+        logger.info("Returned from Service " + sig.getName());
+    }
 }
