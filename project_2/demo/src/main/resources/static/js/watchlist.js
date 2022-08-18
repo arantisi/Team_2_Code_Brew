@@ -4,10 +4,11 @@ let posterTemplate;
 function searchForWatchlist(){
     console.log("test1");
     fetch(`/watchlist/user`)
-        .then((resp)=>{resp = resp.json()})
+        .then((resp)=>resp = resp.json())
         .then(obj=>{
+            console.log(obj);
             for (let watchItem of obj) { //go through the list of movies
-                console.log("test2");
+                console.log(watchItem)
                 fetch(`/omdb/searchId/${watchItem.movieId}`)
                 .then((resp)=> resp = resp.json())
                 .then(mov=>{
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM loaded");
     moviesList = document.querySelector(".watchlist")
     let a = document.querySelector(".poster")
-    moviesItemTemplate = a.cloneNode(true);
+    posterTemplate = a.cloneNode(true);
     a.remove();
     console.log(moviesList);
     searchForWatchlist();

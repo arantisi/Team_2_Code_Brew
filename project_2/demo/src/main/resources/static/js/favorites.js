@@ -1,14 +1,14 @@
 
 let moviesList;
 let posterTemplate;
-function searchForWatchlist(){
+function searchForFavlist(){
     console.log("test1");
-    fetch(`/watchlist/user`)
-        .then((resp)=>{resp = resp.json()})
+    fetch(`/favorite/user`)
+        .then((resp)=>resp = resp.json())
         .then(obj=>{
-            for (let watchItem of obj) { //go through the list of movies
-                console.log("test2");
-                fetch(`/omdb/searchId/${watchItem.movieId}`)
+            for (let favItem of obj) { //go through the list of movies
+                console.log(favItem)
+                fetch(`/omdb/searchId/${favItem.movieId}`)
                 .then((resp)=> resp = resp.json())
                 .then(mov=>{
                     console.log(mov);
@@ -26,10 +26,10 @@ function searchForWatchlist(){
 document.addEventListener('DOMContentLoaded', () => {
     // set up some stuff
     console.log("DOM loaded");
-    moviesList = document.querySelector(".watchlist")
+    moviesList = document.querySelector(".favlist")
     let a = document.querySelector(".poster")
-    moviesItemTemplate = a.cloneNode(true);
+    posterTemplate = a.cloneNode(true);
     a.remove();
     console.log(moviesList);
-    searchForWatchlist();
+    searchForFavlist();
 })

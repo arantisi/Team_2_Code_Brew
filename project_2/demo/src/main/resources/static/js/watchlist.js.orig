@@ -3,20 +3,15 @@ let moviesList;
 let posterTemplate;
 function searchForWatchlist(){
     console.log("test1");
-    fetch(`/watchlist/user`)
-        .then((resp)=>{resp = resp.json()})
+    fetch(`/watchlist/public`)
+        .then((resp)=>{console.log(resp); return resp.json()})
         .then(obj=>{
             for (let watchItem of obj) { //go through the list of movies
-                console.log("test2");
+                console.log(watchItem)
                 fetch(`/omdb/searchId/${watchItem.movieId}`)
                 .then((resp)=> resp = resp.json())
                 .then(mov=>{
                     console.log(mov);
-                    let a = posterTemplate.cloneNode(true);
-                    a.setAttribute("imdbId", mov.imdbID);
-                    a.querySelector("#movieName").textContent = mov.Title+", "+mov.year;
-                    a.querySelector("#icon").setAttribute("src", mov.poster);
-                    moviesList.appendChild(a);
                 })
             }
         })
@@ -26,10 +21,14 @@ function searchForWatchlist(){
 document.addEventListener('DOMContentLoaded', () => {
     // set up some stuff
     console.log("DOM loaded");
-    moviesList = document.querySelector(".watchlist")
+    moviesList = document.querySelector("#watchlist")
     let a = document.querySelector(".poster")
     moviesItemTemplate = a.cloneNode(true);
     a.remove();
     console.log(moviesList);
-    searchForWatchlist();
+    // from stackoverflow https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    console.log(id);
+    searchForWatchlist(id);
 })
