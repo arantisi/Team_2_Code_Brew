@@ -3,7 +3,7 @@ let moviesList;
 let posterTemplate;
 function searchForWatchlist(){
     console.log("test1");
-    fetch(`/watchlist/user`)
+    fetch(`/watchlist/public`)
         .then((resp)=>{console.log(resp); return resp.json()})
         .then(obj=>{
             for (let watchItem of obj) { //go through the list of movies
@@ -28,5 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(moviesList);
     // from stackoverflow https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
     const urlParams = new URLSearchParams(window.location.search);
-    searchForWatchlist();
+    const id = urlParams.get('id');
+    console.log(id);
+    searchForWatchlist(id);
 })
