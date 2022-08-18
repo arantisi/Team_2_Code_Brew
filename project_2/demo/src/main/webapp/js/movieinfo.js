@@ -56,16 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/json'
               },
-        }).then(()=>{
-            console.log("sentPOST");
-        }).catch((err) => {
-            console.log("Failed to POST data");
-        })
+            }).then(()=>{
+                
+            }).catch((err) => {
+                console.log("Failed to POST data");
+            })
     }
 
     // Favorites button on click
     document.querySelector("#favorites-btn").onclick = (evt)=>{
-        console.log("add to favorites " + id);
+        // Send POST request to endpoint
+        fetch(`/favorite/movie/${id}`, {
+            method: "POST",
+            }).then(()=>{
+                console.log("Sent fav req")
+            }).catch((err) => {
+                console.log("Failed to POST data");
+            })
     }
 
     // Watchlist button on click
