@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
+/**
+ * UserController
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -20,6 +22,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * @param id id of user to get
+     * @return User object
+     */
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public User getUserById(@PathVariable int id) {
 

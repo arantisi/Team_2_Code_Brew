@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * ReviewController
+ */
 @RestController
 @RequestMapping("/review")
 public class ReviewController {
@@ -26,6 +29,9 @@ public class ReviewController {
 //        return reviewService.getReviewsByUser(userId);
 //    }
 
+    /**
+     * @return list of user reviews
+     */
     @GetMapping("/user")
     public List<Review> getUserReviews() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -33,6 +39,10 @@ public class ReviewController {
         return reviewService.getReviewsByUser(user.getId());
     }
 
+    /**
+     * @param data data containing information on what to add to review
+     * @param movieId id of movie
+     */
     // create a review
     // Not sure if 2 @Requestbody will work. Uncomment out the next createReview method if you think it would work.
     @PostMapping(value = "/create/{movieId}", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -42,6 +52,10 @@ public class ReviewController {
         reviewService.createReview(new Review(user.getId(), movieId, Integer.parseInt(data.getRating()), data.getReview()));
     }
 
+    /**
+     * @param review data contining information on review
+     * @param movieId movie it
+     */
     //     Creates a Review with a default rating of 1
     @PostMapping("/create/review/{movieId}")
     public void createReviewWithDefaultRating(@RequestBody String review, @PathVariable String movieId) {
@@ -66,6 +80,9 @@ public class ReviewController {
     }
 */
 
+    /**
+     * @param movieId movie id
+     */
     @DeleteMapping("/delete/{movieId}")
     public void deleteFromReviews(@PathVariable String movieId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

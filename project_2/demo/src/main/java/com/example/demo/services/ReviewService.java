@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * ReviewService
+ */
 @Service
 @Transactional
 public class ReviewService {
@@ -20,10 +23,17 @@ public class ReviewService {
         return reviewRepository.findByUserId(userId);
     }
 
+    /**
+     * @param userId user id
+     * @param movieId movie id
+     */
     public void deleteFromReviews(int userId, String movieId) {
         reviewRepository.deleteByUserIdAndMovieId(userId, movieId);
     }
 
+    /**
+     * @param review review to add to db
+     */
     public void createReview(Review review) {
         int userId = review.getUserId();
         String movieId = review.getMovieId();

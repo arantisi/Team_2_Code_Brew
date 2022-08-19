@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * FavoriteService
+ */
 @Service
 @Transactional
 public class FavoriteService {
@@ -16,10 +19,17 @@ public class FavoriteService {
     @Autowired
     FavoriteRepository favoriteRepository;
 
+    /**
+     * @param userId id of user
+     * @return retunr slist of favorite objects
+     */
     public List<Favorite> getFavoritesByUser(int userId) {
         return favoriteRepository.findByUserId(userId);
     }
 
+    /**
+     * @param favorite adds a favorite object into the db
+     */
 //    public Favorite addToFavorites(Favorite favorite) {
 //        return favoriteRepository.save(favorite);
 //    }
@@ -34,6 +44,10 @@ public class FavoriteService {
         }
     }
 
+    /**
+     * @param userId user id
+     * @param movieId movoie id
+     */
     public void deleteFromFavorites(int userId,String movieId) {
         favoriteRepository.deleteByUserIdAndMovieId(userId,movieId);
     }

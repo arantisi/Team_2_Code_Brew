@@ -11,12 +11,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * WatchlistController
+ */
 @RestController
 @RequestMapping("/watchlist")
 public class WatchlistController {
     @Autowired
     private WatchlistService watchlistService;
 
+    /**
+     * @return list of watchlist items
+     */
     @GetMapping("/user")
     public List<Watchlist> getUserWatchlist() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -29,6 +35,10 @@ public class WatchlistController {
 //        return watchlistService.getWatchlistByName(name);
 //    }
 
+    /**
+     * @param name name of watchlist to get
+     * @return list of watchlist objects
+     */
     @GetMapping("user/name/{name}")
     public List<Watchlist> getWatchListByNameAndID(@PathVariable String name) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -36,6 +46,9 @@ public class WatchlistController {
         return watchlistService.getWatchlistByUserIdAndName(user.getId(),name);
     }
 
+    /**
+     * @param movieId movie id
+     */
     @DeleteMapping("/user/delete/movie/{movieId}")
     public void deleteWatchListByUserIdAndMovieId(@PathVariable String movieId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -43,6 +56,9 @@ public class WatchlistController {
         watchlistService.deleteWatchlistByUserIdAndMovieId(user.getId(), movieId);
     }
 
+    /**
+     * @param movieId movie id
+     */
     @PostMapping("user/create/movie/{movieId}")
     public void addToWatchlist(@PathVariable String movieId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
