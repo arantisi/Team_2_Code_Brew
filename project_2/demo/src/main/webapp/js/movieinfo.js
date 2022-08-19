@@ -6,12 +6,26 @@ let btnReview;
 let btnFavorite;
 let btnWatchlist;
 
+let isWatchlisted = false;
+let isFavorited = false;
+
+// Basically bruteforcing
+function swapToRemove(element, text) {
+    element.classList.remove('btn-primary');
+    element.classList.add('btn-danger');
+    element.textContent = text;
+}
+function swapToAdd(element, text) {
+    element.classList.remove('btn-danger');
+    element.classList.add('btn-primary');
+    element.textContent = text;
+}
+
 // Function to search for a movieId
 function searchForTitle(id) {
     fetch(`/omdb/searchId/${id}`)
         .then(resp=>resp = resp.json())
         .then(obj=>{
-            //console.log(obj);
             poster.setAttribute('src', obj.poster);
             title.innerHTML = obj.title;
             desc.innerHTML = obj.plot;
@@ -25,16 +39,30 @@ async function checkForWatchlisted(id) {
     fetch(`/watchlist/user`)
         .then((resp)=>resp = resp.json())
         .then(obj=>{
-            for (let watchItem of obj) {
-                if (watchItem.movieId == id)
-                    ret = true;
+            for (let item of obj) {
+                if (item.movieId == id) {
+                    isWatchlisted = true;
+                    swapToRemove(btnWatchlist, "Remove from watchlist");
+                }
             }
         })
         .catch((err)=>console.log("Failed to pull user watchlist"));
-    
-    if (ret) {
-        console.log("This movie is already watchlisted")
-    }
+}
+
+async function checkForFavorited(id) {
+    let ret = false;
+    fetch(`/favorite/user`)
+        .then((resp)=>resp = resp.json())
+        .then(obj=>{
+            for (let item of obj) {
+                if (item.movieId == id) {
+                    isFavorited = true;
+                    swapToRemove(btnFavorite, "Remove from favorites");
+                }
+            }
+        })
+        .catch((err)=>console.log("Failed to pull user watchlist"));
+
 }
 
 // On DOM loaded
@@ -51,9 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
 
-    // Check if user has watchlist favorited
+    // Check if user has watchlist or favorited
     console.log("Pulling user watchlist..");
     checkForWatchlisted(id);
+    checkForFavorited(id);
 
     let userRating = 0;
     // Review rating stars click event
@@ -93,24 +122,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Favorites button on click
     btnFavorite.onclick = (evt)=>{
-        fetch(`/favorite/movie/${id}`, {
-            method: "POST",
-            }).then(()=>{
-                console.log("Sent add to fav req")
-            }).catch((err) => {
-                console.log("Failed to POST data");
+        if (!isFavorited) {
+            fetch(`/favorite/movie/${id}`, {
+                method: "POST",
+                }).then(()=>{
+                    console.log("Sent add to fav req")
+                }).catch((err) => {
+                    console.log("Failed to POST data");
+                })
+            swapToRemove(btnFavorite, "Remove from favorites");
+            isFavorited = true;
+            return;
+        }
+        
+        fetch(`favorite/delete/${id}`, {
+                method:'DELETE'
             })
+            .catch((err)=>console.log("failed to delete\n"+err))
+        swapToAdd(btnFavorite, "Add to favorites");
+        isFavorited = false;
     }
 
     // Watchlist button on click
     btnWatchlist.onclick = (evt)=>{
-        fetch(`/watchlist/user/create/movie/${id}`, {
-            method: "POST",
-            }).then(()=>{
-                console.log("Sent add to watchlist req")
-            }).catch((err) => {
-                console.log("Failed to POST data");
+        if (!isWatchlisted) {
+            fetch(`/watchlist/user/create/movie/${id}`, {
+                method: "POST",
+                }).then(()=>{
+                    console.log("Sent add to watchlist req")
+                }).catch((err) => {
+                    console.log("Failed to POST data");
+                })
+            swapToRemove(btnWatchlist, "Remove from watchlist");
+            isWatchlisted = true;
+            return;
+        }
+        
+        fetch(`watchlist/user/delete/movie/${id}`, {
+                method:'DELETE'
             })
+            .catch((err)=>console.log("failed to delete\n"+err))
+        swapToAdd(btnWatchlist, "Add to watchlist");
+        isWatchlisted = false;
     }
 
     searchForTitle(id);
