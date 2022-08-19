@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/favorite")
 public class FavoriteController {
 
@@ -28,12 +28,10 @@ public class FavoriteController {
         return favoriteService.getFavoritesByUser(userId);
     }
 
-
     @GetMapping()
     public String favoriteView() {
         return "favorite";
     }
-
 
     @GetMapping("/user")
     public List<Favorite> getUserFavorites() {
@@ -55,10 +53,12 @@ public class FavoriteController {
         favoriteService.addToFavorites(new Favorite(user.getId(), movieId));
     }
 
-    // delete a movie from favorites
-    @DeleteMapping("/user/{userId}/movie/{movieId}")
-    public void deleteFromFavorites(@PathVariable int userId, @PathVariable String movieId) {
-        favoriteService.deleteFromFavorites(userId, movieId);
+    // Delete a movie from favorites
+    @DeleteMapping("/delete/{movieId}")
+    public void deleteFromFavorites(@PathVariable String movieId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        favoriteService.deleteFromFavorites(user.getId(), movieId);
     }
 
 }

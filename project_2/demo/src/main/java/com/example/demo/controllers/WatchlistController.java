@@ -36,13 +36,11 @@ public class WatchlistController {
         return watchlistService.getWatchlistByUserIdAndName(user.getId(),name);
     }
 
-
-
     @DeleteMapping("/user/delete/movie/{movieId}")
-    public void deleteWatchListByUserIdAndMovieId(@PathVariable int userId,@PathVariable String movieId) {
+    public void deleteWatchListByUserIdAndMovieId(@PathVariable String movieId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-        watchlistService.deleteWatchlistByUserIdAndMovieId(user.getId(),movieId);
+        watchlistService.deleteWatchlistByUserIdAndMovieId(user.getId(), movieId);
     }
 
     @PostMapping("user/create/movie/{movieId}")
