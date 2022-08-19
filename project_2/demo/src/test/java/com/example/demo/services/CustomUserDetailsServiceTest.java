@@ -1,3 +1,49 @@
+package com.example.demo.services;
+
+import com.example.demo.DemoApplication;
+import com.example.demo.models.CustomUserDetails;
+import com.example.demo.models.User;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.test.context.TestPropertySource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@SpringBootTest(classes = DemoApplication.class)
+@TestPropertySource("classpath:application.properties")
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class CustomUserDetailsServiceTest {
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    private UserService userService;
+
+    @Test
+    public void verify_CustomUserDetailsService() {
+        User userJim = userService.getUserByUsername("jim");
+        String username = userJim.getUsername();
+        CustomUserDetails loadedUser = (CustomUserDetails) customUserDetailsService.loadUserByUsername(username);
+        assertEquals(username, loadedUser.getUsername());
+        assertEquals(userJim.getPassword(), loadedUser.getPassword());
+    }
+
+    @Test
+    public void verify_loadUserByNameThrowsException() {
+        Throwable exception = assertThrows(UsernameNotFoundException.class, () -> customUserDetailsService.loadUserByUsername("null"));
+        assertEquals("User Not Found", exception.getMessage());
+    }
+
+}
+
+
+
+
+
 //package com.example.demo.services;
 //
 //import com.example.demo.models.User;
