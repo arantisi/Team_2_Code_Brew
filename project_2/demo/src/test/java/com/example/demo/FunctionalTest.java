@@ -333,17 +333,35 @@ public class FunctionalTest {
     @Order(17)
     public void verify_addToWatchlistThrowsException() {
         try {
-            // Add a record to the favorites table with a userId=3 and movieId='fakeMovieId'
+            // Add a record to the watchlists table with a userId=3 and movieId='fakeMovieId'
             Watchlist watchlist = new Watchlist("general", 3, "fakeMovieId", true);
             watchlistService.addToWatchlist(watchlist);
 
-            // Add the same movie to userId 3's favorites
+            // Add the same movie to userId 3's watchlists
             Throwable exception = assertThrows(DuplicateEntityException.class, () -> watchlistService.addToWatchlist(watchlist));
             assertEquals("Movie already in your Watchlist", exception.getMessage());
         } finally{
-            // clean up - delete fav from favorites table
+            // clean up - delete watchlist from watchlists table
             watchlistService.deleteWatchlistByUserIdAndMovieId(3, "fakeMovieId");
         }
     }
+
+    @Test
+    @Order(18)
+    public void verify_createReviewThrowsException() {
+        try {
+            // Add a record to the reviews table with a userId=3 and movieId='fakeMovieId'
+            Review review = new Review( 3, "fakeMovieId", 1, "This is a review");
+            reviewService.createReview(review);
+
+            // Add the same movie review to userId 3's reviews
+            Throwable exception = assertThrows(DuplicateEntityException.class, () -> reviewService.createReview(review));
+            assertEquals("You have already reviewed this movie", exception.getMessage());
+        } finally{
+            // clean up - delete review from reviews table
+            reviewService.deleteFromReviews(3, "fakeMovieId");
+        }
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.exceptions.DuplicateEntityException;
 import com.example.demo.models.Review;
 import com.example.demo.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,14 @@ public class ReviewService {
     }
 
     public void createReview(Review review) {
-        reviewRepository.save(review);
+        int userId = review.getUserId();
+        String movieId = review.getMovieId();
+        Review duplicate = reviewRepository.findByUserIdAndMovieId(userId, movieId);
+        if (duplicate == null) {
+            reviewRepository.save(review);
+        } else {
+            throw new DuplicateEntityException("You have already reviewed this movie");
+        }
     }
 
 //    public void editRating(int userId, String movieId, int rating) {
