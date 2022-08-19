@@ -28,6 +28,10 @@ function searchForTitle(id) {
         .then(obj=>{
             poster.setAttribute('src', obj.poster);
             title.innerHTML = obj.title;
+            document.querySelector("#movieRated").innerHTML = "Rated: " + obj.rated;
+            document.querySelector("#movieYear").innerHTML = "Released: " + obj.released;
+            document.querySelector("#movieRuntime").innerHTML = "Length: " + obj.runtime;
+            document.querySelector("#movieMetascore").innerHTML = "Rating (Metascore): " + obj.metascore + "/100";
             desc.innerHTML = obj.plot;
         })
         .catch(err=>console.log("error encountered while fetching title"));
