@@ -24,4 +24,12 @@ public class UserService {
     public User getUserByUsername(String username) {
         return userRepo.findByUsername(username);
     }
+
+    public User createUser(User user) {
+        return userRepo.save(user);
+    }
+
+    public void deleteUserByUsername(String userName) {
+        userRepo.deleteUserByUsername(userName);
+    }
 }

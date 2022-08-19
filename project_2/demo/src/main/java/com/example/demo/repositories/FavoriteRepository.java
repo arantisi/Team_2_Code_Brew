@@ -11,4 +11,7 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Integer> {
     List<Favorite> findByUserId(int userId);
 
     void deleteByUserIdAndMovieId(int userId,String movieId);
+
+    Favorite findByUserIdAndMovieId(int userId, String fakeMovieId);
+
 }

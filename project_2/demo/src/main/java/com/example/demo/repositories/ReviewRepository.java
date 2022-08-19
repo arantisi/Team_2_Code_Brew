@@ -14,16 +14,17 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     void deleteByUserIdAndMovieId(int userId, String movieId);
 
-    @Query(
-            nativeQuery = true,
-            value = "update reviews set rating=:rating where user_id=:userId and movie_id=:movieId"
-    )
-    void updateRating(@Param("userId") int userId, @Param("movieId") String movieId, @Param("rating") int rating);
+//    @Query(
+//            nativeQuery = true,
+//            value = "update reviews set rating=:rating where user_id=:userId and movie_id=:movieId"
+//    )
+//    void updateRating(@Param("userId") int userId, @Param("movieId") String movieId, @Param("rating") int rating);
+//
+//    @Query(
+//            nativeQuery = true,
+//            value = "update reviews set review=:review where user_id=:userId and movie_id=:movieId"
+//    )
+//    void updateReview(@Param("userId") int userId, @Param("movieId") String movieId, @Param("review") String review);
 
-    @Query(
-            nativeQuery = true,
-            value = "update reviews set review=:review where user_id=:userId and movie_id=:movieId"
-    )
-    void updateReview(@Param("userId") int userId, @Param("movieId") String movieId, @Param("review") String review);
-
+    Review findByUserIdAndMovieId(int userId, String movieId);
 }

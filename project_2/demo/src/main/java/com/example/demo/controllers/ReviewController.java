@@ -50,6 +50,7 @@ public class ReviewController {
         reviewService.createReview(new Review(user.getId(), movieId, 1, review));
     }
 
+    /*
     @PutMapping("/editRating/{movieId}")
     public void editRating(@RequestBody int rating, @PathVariable String movieId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -63,7 +64,7 @@ public class ReviewController {
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
         reviewService.editReview(user.getId(), movieId, review);
     }
-
+*/
 
     @DeleteMapping("/delete/{movieId}")
     public void deleteFromReviews(@PathVariable String movieId) {

@@ -24,10 +24,10 @@ public class WatchlistController {
         return watchlistService.getWatchlistByUserId(user.getId());
     }
 
-    @GetMapping("/name/{name}")
-    public List<Watchlist> getWatchListByName(@PathVariable String name) {
-        return watchlistService.getWatchlistByName(name);
-    }
+//    @GetMapping("/name/{name}")
+//    public List<Watchlist> getWatchListByName(@PathVariable String name) {
+//        return watchlistService.getWatchlistByName(name);
+//    }
 
     @GetMapping("user/name/{name}")
     public List<Watchlist> getWatchListByNameAndID(@PathVariable String name) {

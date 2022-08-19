@@ -15,4 +15,6 @@ public interface WatchlistRepository extends JpaRepository<Watchlist, Integer> {
     Optional<Watchlist> findByMovieId(String name);
     Optional<Watchlist> findById(int id);
     void deleteByUserIdAndMovieId(int userId,String movieId);
+
+    Watchlist findByUserIdAndMovieId(int userId, String fakeMovieId);
 }
