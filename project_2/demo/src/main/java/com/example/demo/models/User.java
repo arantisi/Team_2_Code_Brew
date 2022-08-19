@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,40 +11,37 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="username")
+    @Column(name = "username")
     private String username;
 
-    @Column(name="pass")
-    private String pass;
+    @Column(name = "pass")
+    private String password;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName="id")
-    private List<Watchlist> watchlists;
+    private List<Watchlist> watchlists = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName="id")
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName="id")
-    private List<Favorite> favorites;
+    private List<Favorite> favorites = new ArrayList<>();
 
-    public User() {}
-
-    public User(int id, String username, String pass) {
-        this.id = id;
-        this.username = username;
-        this.pass = pass;
+    public User() {
     }
 
-    /*public User(int id, String username, String pass, List<Watchlist> watchlists, List<Review> reviews, List<Favorite> favorites) {
+    public User(int id, String username, String password) {
         this.id = id;
         this.username = username;
-        this.pass = pass;
-        this.watchlists = watchlists;
-        this.reviews = reviews;
-        this.favorites = favorites;
-    }*/
+        this.password = password;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -61,35 +59,16 @@ public class User {
         this.username = username;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String pass) {
+        this.password = pass;
     }
 
-   /* public List<Watchlist> getWatchlists() {
-        return watchlists;
+    public String getRole() {
+        return "user";
     }
 
-    public void setWatchlists(List<Watchlist> watchlists) {
-        this.watchlists = watchlists;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public List<Favorite> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(List<Favorite> favorites) {
-        this.favorites = favorites;
-    }*/
 }

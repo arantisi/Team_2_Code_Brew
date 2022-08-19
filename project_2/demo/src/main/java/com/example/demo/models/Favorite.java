@@ -1,6 +1,8 @@
 package com.example.demo.models;
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name="favorites")
 public class Favorite {
@@ -11,6 +13,11 @@ public class Favorite {
     private String movieId;
 
     public Favorite() {
+    }
+
+    public Favorite(int userId, String movieId) {
+        this.userId = userId;
+        this.movieId = movieId;
     }
 
     public Favorite(int id, int userId, String movieId) {
